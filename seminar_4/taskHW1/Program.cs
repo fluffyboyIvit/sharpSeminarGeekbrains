@@ -68,7 +68,7 @@ bool BoolDigitSumEven(int num)
 void CheckNumber()
 {
     int number;
-    int[] array = new int[100];
+    int[] array = new int[100]; //массив сделал для запоминания предыдущих чисел
     int count = 0;
     while (true)
     {
