@@ -10,50 +10,37 @@
 // Максимальный элемент в строке 1: 8
 // Максимальный элемент в строке 2: 12
 
-
-using System.ComponentModel.DataAnnotations;
-
-int[,] CreateMatrixRndInt(int rows, int column,int min, int max)
-{   
-    Random rnd = new Random();
-    int[,] matrix = new int [rows,column];
-    for (int i = 0; i < matrix.GetLength(0); i++)
+class Program
+{
+    static void FindMaxInRows(int[,] array)
     {
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            matrix[i,j] = rnd.Next(min,max);
-        }
-    }
-    return matrix;
-}
+        int rows = array.GetLength(0);
+        int cols = array.GetLength(1);
 
-void PrintMatrix(int[,]matrix)
-{   
-    
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    { Console.Write("|");
-        for (int j = 0; j < matrix.GetLength(1); j++)
+        int max;
+        for (int i = 0; i < rows; i++)
         {
-            Console.Write($"{matrix[i,j], 4}");
-        }
-        Console.WriteLine("|");
-    }
-}
-void PrintMaxValueInRowsMatrix(int[,]matrix)
-{   int max;
-        for (int i = 0; i < matrix.GetLength(0); i++)
-    {   max = matrix[i,0];
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {   
-            if(matrix[i,j]>max)
+            max = array[i, 0];
+            for (int j = 0; j < cols; j++)
             {
-                max = matrix[i,j];
+                if (array[i, j] > max)
+                {
+                    max = array[i, j];
+                }
             }
+            Console.WriteLine($"Максимальный элемент в строке {i}:  {max}");
         }
-    Console.WriteLine($"Максимальный элемент в строке {i}:  {max}");
+
     }
+static void Main()
+{
+int[,] array =
+            {
+{ 1, 3, 5, 7 },
+{ 2, 4, 6, 8 },
+{ 9, 10, 11, 12 }
+        };
+FindMaxInRows(array);
+}
 }
 
-int[,] array2d=CreateMatrixRndInt(3,4,1,20);
-PrintMatrix(array2d);
-PrintMaxValueInRowsMatrix(array2d);
