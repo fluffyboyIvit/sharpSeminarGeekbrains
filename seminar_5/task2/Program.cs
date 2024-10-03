@@ -35,14 +35,19 @@ int SumMainDiogonalMatrix(int[,] matrix)
 {
     
     int sum = 0;
-    for (int i = 0; i < matrix.GetLength(0); i++)
+    int minSize= matrix.GetLength(0);
+    if(matrix.GetLength(1)<minSize)
+    {
+        minSize= matrix.GetLength(1);
+    }
+    for (int i = 0; i < minSize; i++)
     {
         sum += matrix[i, i];
 
     }
     return sum;
 }
-int[,] array2d = CreateMatrixRndInt(3, 4, 1, 10);
+int[,] array2d = CreateMatrixRndInt(4, 3, 1, 10);
 PrintMatrix(array2d);
 int result = SumMainDiogonalMatrix(array2d);
 Console.WriteLine($" sum = {result}");
